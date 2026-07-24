@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory — VELOCE Premium Auto Gallery</title>
+  <meta name="description" content="Browse the full VELOCE collection — Ferrari, Lamborghini, Porsche, BMW and more. Every car certified and inspected." />
+  <meta name="theme-color" content="#0a0a0c" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Inventory — VELOCE Premium Auto Gallery" />
+  <meta property="og:description" content="Browse the full VELOCE collection. Every car certified and inspected." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=1200&auto=format&fit=crop" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0c'/%3E%3Ctext x='16' y='23' font-family='Georgia' font-size='20' font-weight='bold' fill='%23e2c58d' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ═══════════ CUSTOM CURSOR ═══════════ -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"><span>VIEW</span></div>
+
+  <!-- ═══════════ NAVBAR ═══════════ -->
+  <header class="nav" id="nav">
+    <a href="index.html" class="nav__logo">VELOCE<span>.</span></a>
+    <nav class="nav__links">
+      <a href="inventory.html" class="nav__link is-active" data-magnetic>Inventory</a>
+      <a href="index.html#showcase" class="nav__link" data-magnetic>Showcase</a>
+      <a href="index.html#about" class="nav__link" data-magnetic>About</a>
+      <a href="#contact" class="nav__link" data-magnetic>Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn--outline nav__cta" data-magnetic>Book a Visit</a>
+  </header>
+
+  <main>
+
+    <!-- ═══════════ PAGE HERO ═══════════ -->
+    <section class="page-hero">
+      <p class="section__eyebrow reveal-line"><span>The Collection</span></p>
+      <h1 class="page-hero__title split-text">Full Inventory</h1>
+      <p class="page-hero__sub reveal-line"><span><strong id="carCount">0</strong> hand-picked vehicles. Certified, inspected, and ready for delivery.</span></p>
+    </section>
+
+    <!-- ═══════════ FILTERS ═══════════ -->
+    <section class="filters" id="filters">
+      <div class="filters__pills" id="brandPills"><!-- rendered --></div>
+      <div class="filters__search">
+        <input id="searchInput" type="search" placeholder="Search brand or model…" autocomplete="off" />
+      </div>
+      <div class="filters__sort">
+        <label for="priceSelect">Price</label>
+        <select id="priceSelect">
+          <option value="all">Any</option>
+          <option value="0-100000">Under $100k</option>
+          <option value="100000-250000">$100k – $250k</option>
+          <option value="250000-99999999">Over $250k</option>
+        </select>
+        <label for="sortSelect">Sort</label>
+        <select id="sortSelect">
+          <option value="featured">Featured</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="hp-desc">Power: High → Low</option>
+          <option value="accel-asc">0–100: Fastest first</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- ═══════════ GRID ═══════════ -->
+    <section class="section inventory-section">
+      <div class="collection__grid" id="inventoryGrid"><!-- rendered --></div>
+      <p class="inventory-empty" id="inventoryEmpty" hidden>No vehicles match this filter.</p>
+    </section>
+
+    <!-- ═══════════ COMPARE BAR ═══════════ -->
+    <div class="compare-bar" id="compareBar">
+      <div class="compare-bar__items" id="compareItems"></div>
+      <span class="compare-bar__label" id="compareLabel"></span>
+      <a href="compare.html" class="btn btn--solid" id="compareGo">Compare</a>
+      <button class="compare-bar__clear" id="compareClear">Clear</button>
+    </div>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="footer" id="contact">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">VELOCE<span>.</span></a>
+          <p>For those who live the art of driving.<br/>In Istanbul since 2011.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <a href="tel:+902120000000">+90 212 000 00 00</a>
+          <a href="mailto:info@veloce.com">info@veloce.com</a>
+          <span>Maslak Auto District, Istanbul</span>
+        </div>
+        <div class="footer__col">
+          <h4>Opening Hours</h4>
+          <span>Mon – Sat: 09:00 – 20:00</span>
+          <span>Sunday: 11:00 – 18:00</span>
+        </div>
+        <div class="footer__col">
+          <h4>Social</h4>
+          <a href="#" data-magnetic>Instagram</a>
+          <a href="#" data-magnetic>YouTube</a>
+          <a href="#" data-magnetic>X / Twitter</a>
+        </div>
+      </div>
+      <div class="footer__big" aria-hidden="true">VELOCE</div>
+      <div class="footer__bottom">
+        <span>© 2026 Veloce Auto Gallery. All rights reserved.</span>
+        <span>Portfolio project</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/inventory.js"></script>
+</body>
+</html>

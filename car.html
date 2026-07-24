@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vehicle — VELOCE Premium Auto Gallery</title>
+  <meta name="description" content="Explore this vehicle in the VELOCE collection — full specifications, gallery and performance data." />
+  <meta name="theme-color" content="#0a0a0c" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Vehicle — VELOCE Premium Auto Gallery" />
+  <meta property="og:description" content="Full specifications, interactive 3D model and gallery." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=1200&auto=format&fit=crop" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0c'/%3E%3Ctext x='16' y='23' font-family='Georgia' font-size='20' font-weight='bold' fill='%23e2c58d' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ═══════════ CUSTOM CURSOR ═══════════ -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"><span>VIEW</span></div>
+
+  <!-- ═══════════ NAVBAR ═══════════ -->
+  <header class="nav" id="nav">
+    <a href="index.html" class="nav__logo">VELOCE<span>.</span></a>
+    <nav class="nav__links">
+      <a href="inventory.html" class="nav__link" data-magnetic>Inventory</a>
+      <a href="index.html#showcase" class="nav__link" data-magnetic>Showcase</a>
+      <a href="index.html#about" class="nav__link" data-magnetic>About</a>
+      <a href="#contact" class="nav__link" data-magnetic>Contact</a>
+    </nav>
+    <a href="#enquire" class="btn btn--outline nav__cta" data-magnetic data-modal-open>Enquire</a>
+  </header>
+
+  <main>
+
+    <!-- ═══════════ DETAIL HERO ═══════════ -->
+    <section class="detail-hero">
+      <div class="detail-hero__bg" id="detailHeroBg">
+        <img id="heroImg" src="" alt="" />
+      </div>
+      <div class="detail-hero__vignette"></div>
+
+      <div class="detail-hero__content">
+        <nav class="detail-hero__crumb reveal-line">
+          <span><a href="inventory.html">Inventory</a> <i>/</i> <em id="crumbBrand"></em></span>
+        </nav>
+        <p class="detail-hero__brand reveal-line"><span id="heroBrand"></span></p>
+        <h1 class="detail-hero__title" id="heroTitle"></h1>
+        <p class="detail-hero__tagline reveal-line"><span id="heroTagline"></span></p>
+
+        <div class="detail-hero__meta" id="heroMeta"><!-- badges rendered --></div>
+
+        <div class="detail-hero__bottom">
+          <div class="detail-hero__price">
+            <span>Price</span>
+            <strong id="heroPrice"></strong>
+          </div>
+          <div class="detail-hero__actions">
+            <a href="#enquire" class="btn btn--solid" data-magnetic data-modal-open>Enquire Now</a>
+            <a href="#specs" class="btn btn--ghost" data-magnetic>Full Specs <span class="btn__arrow">↓</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__scroll-hint">
+        <span>Scroll</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════ QUICK SPECS STRIP ═══════════ -->
+    <section class="quickspecs">
+      <div class="quickspec">
+        <strong><span data-count="0" id="qsHp">0</span></strong>
+        <span class="quickspec__label">Horsepower</span>
+      </div>
+      <div class="quickspec">
+        <strong><span id="qsAccel">0</span><em>s</em></strong>
+        <span class="quickspec__label">0–100 km/h</span>
+      </div>
+      <div class="quickspec">
+        <strong><span id="qsSpeed">0</span><em>km/h</em></strong>
+        <span class="quickspec__label">Top Speed</span>
+      </div>
+      <div class="quickspec">
+        <strong><span id="qsTorque">0</span><em>Nm</em></strong>
+        <span class="quickspec__label">Torque</span>
+      </div>
+    </section>
+
+    <!-- ═══════════ OVERVIEW ═══════════ -->
+    <section class="section overview">
+      <div class="overview__grid">
+        <div class="overview__text">
+          <p class="section__eyebrow reveal-line"><span>01 — Overview</span></p>
+          <h2 class="section__title split-text">The Story</h2>
+          <p class="overview__desc" id="carDescription"></p>
+        </div>
+        <div class="overview__features">
+          <h3>Highlights</h3>
+          <ul id="featureList"><!-- rendered --></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ PERFORMANCE RATINGS ═══════════ -->
+    <section class="section ratings">
+      <div class="section__head">
+        <p class="section__eyebrow reveal-line"><span>02 — Character</span></p>
+        <h2 class="section__title split-text">Performance DNA</h2>
+      </div>
+      <div class="ratings__list" id="ratingsList"><!-- rendered --></div>
+    </section>
+
+    <!-- ═══════════ 3D STUDIO ═══════════ -->
+    <section class="section studio" id="studio">
+      <div class="section__head">
+        <p class="section__eyebrow reveal-line"><span>03 — 3D Studio</span></p>
+        <h2 class="section__title split-text">Take It for a Spin</h2>
+        <p class="section__desc reveal-line"><span>This exact model in interactive 3D — drag to rotate it 360°, scroll to zoom in on every detail.</span></p>
+      </div>
+
+      <div class="studio__stage" id="studioStage" data-lenis-prevent>
+        <div class="studio__loader" id="studioLoader">
+          <span class="studio__loader-text" id="studioLoaderText">Preparing 3D model…</span>
+          <div class="studio__loader-spinner"></div>
+        </div>
+      </div>
+      <p class="studio__note">3D models courtesy of the Sketchfab community — attribution inside the viewer.</p>
+    </section>
+
+    <!-- ═══════════ GALLERY ═══════════ -->
+    <section class="section gallery">
+      <div class="section__head">
+        <p class="section__eyebrow reveal-line"><span>04 — Gallery</span></p>
+        <h2 class="section__title split-text">In the Flesh</h2>
+      </div>
+      <div class="gallery__grid" id="galleryGrid"><!-- rendered --></div>
+    </section>
+
+    <!-- ═══════════ FULL SPECIFICATIONS ═══════════ -->
+    <section class="section specs" id="specs">
+      <div class="section__head">
+        <p class="section__eyebrow reveal-line"><span>05 — Data</span></p>
+        <h2 class="section__title split-text">Full Specifications</h2>
+      </div>
+      <div class="specs__table" id="specsTable"><!-- rendered --></div>
+    </section>
+
+    <!-- ═══════════ FINANCING CALCULATOR ═══════════ -->
+    <section class="section finance" id="finance">
+      <div class="section__head">
+        <p class="section__eyebrow reveal-line"><span>06 — Finance</span></p>
+        <h2 class="section__title split-text">Make the Numbers Work</h2>
+        <p class="section__desc reveal-line"><span>Estimate your monthly payment. Indicative only — final terms subject to bank approval.</span></p>
+      </div>
+      <div class="finance__panel">
+        <div class="finance__controls">
+          <div class="finance__control">
+            <div class="finance__control-head">
+              <label for="downRange">Down Payment</label>
+              <strong id="downLabel">30% · $0</strong>
+            </div>
+            <input type="range" id="downRange" min="10" max="60" step="5" value="30" />
+          </div>
+          <div class="finance__control">
+            <div class="finance__control-head">
+              <label for="termRange">Term</label>
+              <strong id="termLabel">36 months</strong>
+            </div>
+            <input type="range" id="termRange" min="12" max="60" step="6" value="36" />
+          </div>
+          <p class="finance__apr">Fixed APR <strong>8.9%</strong> · via partner banks</p>
+        </div>
+        <div class="finance__result">
+          <span class="finance__result-label">Estimated Monthly</span>
+          <strong class="finance__monthly" id="financeMonthly">$0</strong>
+          <div class="finance__breakdown">
+            <span>Loan amount <strong id="financeLoan">$0</strong></span>
+            <span>Total interest <strong id="financeInterest">$0</strong></span>
+          </div>
+          <a href="#enquire" class="btn btn--solid" data-magnetic data-modal-open>Apply with This Car</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ SIMILAR VEHICLES ═══════════ -->
+    <section class="section similar">
+      <div class="section__head">
+        <p class="section__eyebrow reveal-line"><span>07 — More</span></p>
+        <h2 class="section__title split-text">You May Also Like</h2>
+      </div>
+      <div class="collection__grid" id="similarGrid"><!-- rendered --></div>
+    </section>
+
+    <!-- ═══════════ ENQUIRE CTA ═══════════ -->
+    <section class="cta cta--detail" id="enquire">
+      <div class="cta__bg" data-parallax-bg>
+        <img id="ctaImg" src="" alt="" />
+      </div>
+      <div class="cta__overlay"></div>
+      <div class="cta__content">
+        <h2 class="split-text">Make it yours.</h2>
+        <p class="reveal-line"><span>Schedule a private viewing or a test drive — our specialists will handle everything.</span></p>
+        <div class="cta__actions">
+          <a href="tel:+902120000000" class="btn btn--solid btn--lg" data-magnetic>Call the Showroom</a>
+          <a href="mailto:info@veloce.com" class="btn btn--outline btn--lg" data-magnetic>Email Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ NEXT CAR ═══════════ -->
+    <a class="next-car" id="nextCar" href="#" data-cursor-view>
+      <div class="next-car__bg"><img id="nextCarImg" src="" alt="" /></div>
+      <div class="next-car__content">
+        <span class="next-car__label">Next in Collection</span>
+        <strong class="next-car__name" id="nextCarName"></strong>
+        <span class="next-car__cta">Explore →</span>
+      </div>
+    </a>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="footer" id="contact">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">VELOCE<span>.</span></a>
+          <p>For those who live the art of driving.<br/>In Istanbul since 2011.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <a href="tel:+902120000000">+90 212 000 00 00</a>
+          <a href="mailto:info@veloce.com">info@veloce.com</a>
+          <span>Maslak Auto District, Istanbul</span>
+        </div>
+        <div class="footer__col">
+          <h4>Opening Hours</h4>
+          <span>Mon – Sat: 09:00 – 20:00</span>
+          <span>Sunday: 11:00 – 18:00</span>
+        </div>
+        <div class="footer__col">
+          <h4>Social</h4>
+          <a href="#" data-magnetic>Instagram</a>
+          <a href="#" data-magnetic>YouTube</a>
+          <a href="#" data-magnetic>X / Twitter</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Veloce Auto Gallery. All rights reserved.</span>
+        <span>Portfolio project</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ═══════════ STICKY BUY BAR ═══════════ -->
+  <div class="buybar" id="buybar">
+    <div class="buybar__info">
+      <strong id="buybarName"></strong>
+      <span id="buybarPrice"></span>
+    </div>
+    <a href="#enquire" class="btn btn--solid" data-magnetic data-modal-open>Enquire</a>
+  </div>
+
+  <!-- ═══════════ ENQUIRY MODAL ═══════════ -->
+  <div class="modal" id="enquiryModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__panel">
+      <button class="modal__close" data-modal-close aria-label="Close">×</button>
+      <h3 id="modalTitle">Book a Private Viewing</h3>
+      <p class="modal__car" id="modalCarName"></p>
+      <form id="enquiryForm" novalidate>
+        <div class="modal__field">
+          <label for="enqName">Full Name</label>
+          <input id="enqName" type="text" required placeholder="John Doe" />
+        </div>
+        <div class="modal__field">
+          <label for="enqPhone">Phone</label>
+          <input id="enqPhone" type="tel" required placeholder="+90 5xx xxx xx xx" />
+        </div>
+        <div class="modal__field">
+          <label for="enqDate">Preferred Date</label>
+          <input id="enqDate" type="date" required />
+        </div>
+        <button type="submit" class="btn btn--solid modal__submit" data-magnetic>Request Appointment</button>
+      </form>
+      <div class="modal__success" id="modalSuccess">
+        <div class="tick">✓</div>
+        <p>Request received.<br/>Our specialist will call you within one business day.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ LIGHTBOX ═══════════ -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">×</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous">←</button>
+    <img id="lightboxImg" src="" alt="Gallery image" />
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next">→</button>
+    <span class="lightbox__count" id="lightboxCount"></span>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/car.js"></script>
+  <script src="js/studio.js"></script>
+</body>
+</html>

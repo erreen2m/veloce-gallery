@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — VELOCE Premium Auto Gallery</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0a0a0c" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0c'/%3E%3Ctext x='16' y='23' font-family='Georgia' font-size='20' font-weight='bold' fill='%23e2c58d' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"><span>VIEW</span></div>
+
+  <header class="nav" id="nav">
+    <a href="index.html" class="nav__logo">VELOCE<span>.</span></a>
+    <nav class="nav__links">
+      <a href="inventory.html" class="nav__link" data-magnetic>Inventory</a>
+      <a href="index.html#showcase" class="nav__link" data-magnetic>Showcase</a>
+      <a href="index.html#about" class="nav__link" data-magnetic>About</a>
+      <a href="index.html#contact" class="nav__link" data-magnetic>Contact</a>
+    </nav>
+    <a href="index.html#contact" class="btn btn--outline nav__cta" data-magnetic>Book a Visit</a>
+  </header>
+
+  <main>
+    <section class="notfound">
+      <h1>404</h1>
+      <p>You've lost the racing line — this page doesn't exist.</p>
+      <a href="index.html" class="btn btn--solid btn--lg" data-magnetic>Back to the Showroom</a>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script>
+    bindMagnetic();
+    pageEnter();
+    gsap.from(".notfound h1", { scale: 0.85, opacity: 0, duration: 1.1, ease: "power3.out" });
+  </script>
+</body>
+</html>
