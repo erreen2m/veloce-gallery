@@ -384,27 +384,57 @@ function injectNavExtras() {
 /* ═══════════ PAGE TRANSITIONS ═══════════ */
 const pageTransition = document.createElement("div");
 pageTransition.className = "page-transition";
+pageTransition.setAttribute("aria-hidden", "true");
 pageTransition.innerHTML = `<span class="page-transition__logo">VELOCE<i>.</i></span>`;
 document.body.appendChild(pageTransition);
 
 const cameInternal = sessionStorage.getItem("veloce_nav") === "1";
 sessionStorage.removeItem("veloce_nav");
 
-if (cameInternal) {
-  gsap.set(pageTransition, { yPercent: 0 });
-  gsap.to(pageTransition, {
-    yPercent: -101,
-    duration: 0.8,
-    ease: "power4.inOut",
-    delay: 0.1,
-  });
-} else {
-  gsap.set(pageTransition, { yPercent: 101 });
+function hidePageTransition(immediate = false) {
+  gsap.killTweensOf(pageTransition);
+  if (immediate) {
+    gsap.set(pageTransition, { yPercent: 101 });
+  } else {
+    gsap.to(pageTransition, {
+      yPercent: -101,
+      duration: 0.75,
+      ease: "power4.inOut",
+    });
+  }
+  // Always park it off-screen + non-interactive after the wipe
+  const settle = () => {
+    gsap.set(pageTransition, { yPercent: 101 });
+    pageTransition.classList.remove("is-covering");
+    pageTransition.style.pointerEvents = "none";
+  };
+  if (immediate) settle();
+  else gsap.delayedCall(0.85, settle);
 }
 
-window.addEventListener("pageshow", (e) => {
-  if (e.persisted) gsap.set(pageTransition, { yPercent: 101 });
-});
+function showPageTransition() {
+  pageTransition.style.pointerEvents = "auto";
+  pageTransition.classList.add("is-covering");
+  gsap.killTweensOf(pageTransition);
+  gsap.fromTo(pageTransition, { yPercent: 101 }, {
+    yPercent: 0,
+    duration: 0.5,
+    ease: "power4.in",
+  });
+}
+
+if (cameInternal) {
+  pageTransition.style.pointerEvents = "auto";
+  pageTransition.classList.add("is-covering");
+  gsap.set(pageTransition, { yPercent: 0 });
+  hidePageTransition(false);
+  // Safety: never leave the wipe covering the site
+  setTimeout(() => hidePageTransition(true), 1600);
+} else {
+  hidePageTransition(true);
+}
+
+window.addEventListener("pageshow", () => hidePageTransition(true));
 
 document.addEventListener("click", (e) => {
   const a = e.target.closest("a[href]");
@@ -417,14 +447,29 @@ document.addEventListener("click", (e) => {
   const href = a.getAttribute("href");
   if (!href || href.startsWith("#") || href.startsWith("mailto:") ||
       href.startsWith("tel:") || href.startsWith("http")) return;
+
+  // Resolve against current location so GitHub Pages subpaths work
+  let dest;
+  try { dest = new URL(href, window.location.href); }
+  catch { return; }
+  if (dest.origin !== window.location.origin) return;
+
+  // Same page (path + query) — don't cover with a wipe that never reloads
+  if (
+    dest.pathname === window.location.pathname &&
+    dest.search === window.location.search
+  ) {
+    return;
+  }
+
   e.preventDefault();
   sessionStorage.setItem("veloce_nav", "1");
-  gsap.fromTo(pageTransition, { yPercent: 101 }, {
-    yPercent: 0,
-    duration: 0.55,
-    ease: "power4.in",
-    onComplete: () => { window.location.href = href; },
+  showPageTransition();
+  gsap.delayedCall(0.52, () => {
+    window.location.assign(dest.href);
   });
+  // If navigation is cancelled / same-document, uncover after a beat
+  setTimeout(() => hidePageTransition(true), 2500);
 });
 
 /* ─────────── PAGE ENTER (non-home pages) ─────────── */
